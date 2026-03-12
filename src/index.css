@@ -1,0 +1,131 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap');
+@import "react-phone-number-input/style.css";
+
+:root {
+  --bg: #050709;
+  --s1: #07080D;
+  --s2: #0B0D14;
+  --s3: #0F1119;
+  --border: #141720;
+  --border2: #1C2030;
+  --border3: #252840;
+  --text: #EEF0F6;
+  --text-2: #A8ADBF;
+  --muted: #555B72;
+  --faint: #2A2D3A;
+}
+
+:root.light {
+  --bg: #F8FAFC;
+  --s1: #FFFFFF;
+  --s2: #F1F5F9;
+  --s3: #E2E8F0;
+  --border: #E2E8F0;
+  --border2: #CBD5E1;
+  --border3: #94A3B8;
+  --text: #0F172A;
+  --text-2: #475569;
+  --muted: #64748B;
+  --faint: #F1F5F9;
+}
+
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-emerald: #059467;
+  --color-emerald-light: #10B981;
+  --color-emerald-dark: #047A57;
+  --color-emerald-deep: #064E3B;
+
+  --color-indigo: #4F46E5;
+  --color-indigo-light: #6366F1;
+  --color-indigo-dark: #3730A3;
+
+  --color-violet: #7C3AED;
+  --color-violet-light: #8B5CF6;
+  --color-violet-dark: #5B21B6;
+
+  --color-bg: var(--bg);
+  --color-s1: var(--s1);
+  --color-s2: var(--s2);
+  --color-s3: var(--s3);
+  --color-border: var(--border);
+  --color-border2: var(--border2);
+  --color-border3: var(--border3);
+
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text antialiased selection:bg-emerald/30 selection:text-emerald-light;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans tracking-tight;
+  }
+}
+
+.hero-bg {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(5,148,103,0.11) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(37,99,235,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 25% at 80% 70%, rgba(124,58,237,0.04) 0%, transparent 60%);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.card-gradient::before {
+  content: '';
+  @apply absolute inset-0 pointer-events-none;
+  background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(5,148,103,0.06) 0%, transparent 70%);
+}
+
+/* Phone Input Custom Styles */
+.PhoneInput {
+  @apply flex items-center bg-s2 border border-border rounded-xl px-4 py-3 focus-within:border-emerald/50 transition-colors;
+}
+
+.PhoneInputInput {
+  @apply bg-transparent border-none outline-none text-sm text-text w-full ml-2;
+}
+
+.PhoneInputCountrySelect {
+  @apply bg-s2 text-text border-none outline-none cursor-pointer;
+}
+
+.PhoneInputCountryIcon {
+  @apply w-6 h-auto rounded-sm;
+}
+
+.phone-input-error .PhoneInput {
+  @apply border-red-500/50;
+}
+
+/* Autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--s2) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Smooth theme transition */
+* {
+  @apply transition-colors duration-300;
+}

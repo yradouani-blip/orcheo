@@ -1,0 +1,7 @@
+{
+  "name": "Orcheo",
+  "description": "Premium event management platform for orchestrating seamless experiences with smart ticketing, networking, and real-time analytics.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
