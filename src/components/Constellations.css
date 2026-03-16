@@ -1,0 +1,116 @@
+/* Constellation decorations */
+.hero-constellation-top-left,
+.hero-constellation-top-right,
+.hero-constellation-bottom-left,
+.hero-constellation-bottom-right,
+.hero-constellation-middle-left,
+.hero-constellation-middle-right,
+.hero-constellation-center-left,
+.hero-constellation-center-right,
+.hero-constellation-top-center,
+.hero-constellation-bottom-center {
+  position: absolute;
+  opacity: 0.4;
+  animation: constellation-float 6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-constellation-top-left,
+.hero-constellation-top-right {
+  width: 180px;
+  height: 180px;
+}
+
+.hero-constellation-bottom-left,
+.hero-constellation-bottom-right,
+.hero-constellation-middle-left,
+.hero-constellation-middle-right,
+.hero-constellation-center-left,
+.hero-constellation-center-right {
+  width: 140px;
+  height: 140px;
+}
+
+.hero-constellation-top-center,
+.hero-constellation-bottom-center {
+  width: 120px;
+  height: 120px;
+}
+
+.hero-constellation-top-left {
+  top: 60px;
+  left: 15%;
+  animation-delay: 0s;
+  opacity: 0.35;
+}
+
+.hero-constellation-top-right {
+  top: 90px;
+  right: 12%;
+  animation-delay: 1.5s;
+  opacity: 0.4;
+}
+
+.hero-constellation-top-center {
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0.8s;
+  opacity: 0.28;
+}
+
+.hero-constellation-bottom-left {
+  bottom: 80px;
+  left: 18%;
+  animation-delay: 2.5s;
+  opacity: 0.3;
+}
+
+.hero-constellation-bottom-right {
+  bottom: 60px;
+  right: 15%;
+  animation-delay: 3.5s;
+  opacity: 0.35;
+}
+
+.hero-constellation-bottom-center {
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 3s;
+  opacity: 0.28;
+}
+
+.hero-constellation-middle-left {
+  top: 40%;
+  left: 8%;
+  animation-delay: 1s;
+  opacity: 0.32;
+}
+
+.hero-constellation-middle-right {
+  top: 45%;
+  right: 10%;
+  animation-delay: 2s;
+  opacity: 0.3;
+}
+
+.hero-constellation-center-left {
+  top: 35%;
+  left: 30%;
+  animation-delay: 1.2s;
+  opacity: 0.3;
+}
+
+.hero-constellation-center-right {
+  top: 55%;
+  right: 28%;
+  animation-delay: 2.2s;
+  opacity: 0.28;
+}
+
+@keyframes constellation-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(12px); }
+}

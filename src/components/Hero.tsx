@@ -1,32 +1,37 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'motion/react';
+import { Constellations } from './Constellations';
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden border-b border-border px-6 md:px-12 py-20">
+    <section id="about" className="relative flex flex-col items-center justify-center overflow-hidden border-b border-border px-6 md:px-12 py-24 w-full max-w-7xl mx-auto min-h-[calc(100vh-80px)]">
+      <Constellations />
       <div className="hero-bg absolute inset-0" />
       
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 flex flex-col items-center text-center max-w-4xl"
+        className="relative z-10 flex flex-col items-center text-center max-w-2xl"
       >
-        <h1 className="font-sans text-5xl md:text-8xl font-bold tracking-tight leading-[0.95] mb-8">
-          Orchestrate <span className="italic text-emerald">Unforgettable</span><br />
+        <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] md:leading-[0.95] mb-8">
+          Orchestrate <span className="italic text-emerald">Unforgettable</span><br className="hidden md:block" />
           Event Experiences
         </h1>
         
-        <p className="text-base md:text-lg text-text-2 tracking-wide max-w-2xl leading-relaxed mb-12">
+        <p className="text-sm md:text-base text-text-2 tracking-wide max-w-xl leading-relaxed mb-12">
           The all-in-one event management platform for high-stakes gatherings. 
           From smart ticketing to real-time analytics, Orcheo handles the complexity 
           so you can focus on the connection.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-12 border-t border-border/50 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 pt-12 border-t border-border/50 w-full">
           <Stat target={2} suffix="M+" label="Tickets Scanned" color="text-emerald" />
           <Stat target={50} suffix="k+" label="Events Hosted" color="text-indigo-light" />
-          <Stat target={100} suffix="+" label="Countries" color="text-violet-light" />
+          <div className="col-span-1 md:col-span-2 lg:col-span-1 flex justify-center">
+            <Stat target={100} suffix="+" label="Countries" color="text-violet-light" />
+          </div>
         </div>
       </motion.div>
     </section>
@@ -42,22 +47,19 @@ const Stat = ({ target, suffix, label, color }: { target: number; suffix: string
   useEffect(() => {
     if (isInView) {
       animate(count, target, {
-        type: "spring",
-        stiffness: 60,
-        damping: 20,
-        mass: 1,
-        restDelta: 0.001
+        duration: 2,
+        ease: [0.16, 1, 0.3, 1],
       });
     }
   }, [isInView, count, target]);
 
   return (
     <div ref={ref} className="flex flex-col items-center">
-      <div className={`text-xl md:text-2xl font-bold tracking-tight ${color} flex items-baseline`}>
+      <div className={`text-2xl md:text-3xl font-bold tracking-tight ${color} flex items-baseline`}>
         <motion.span>{rounded}</motion.span>
         <span>{suffix}</span>
       </div>
-      <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-muted mt-2">
+      <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-text-2 mt-2">
         {label}
       </span>
     </div>

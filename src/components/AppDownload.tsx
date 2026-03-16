@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Smartphone, Download, Apple, Play } from 'lucide-react';
+import { Constellations } from './Constellations';
 
 export const AppDownload = () => {
   return (
-    <section id="download" className="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-border">
+    <section id="download" className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-border">
+      <Constellations />
       <div className="flex flex-col items-center text-center mb-16">
-        <h2 className="font-sans text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <h2 className="font-sans text-3xl md:text-5xl font-bold tracking-tight mb-6">
           Your event, <span className="italic text-emerald">in their pocket.</span>
         </h2>
         <p className="text-sm text-text-2 max-w-xl">
@@ -20,7 +22,7 @@ export const AppDownload = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full"
+          className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24 w-full"
         >
           <div className="flex flex-col items-center lg:items-start gap-6 max-w-md">
             <div className="text-center lg:text-left">

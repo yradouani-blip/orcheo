@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Ticket, QrCode, Users, Network, LayoutDashboard } from 'lucide-react';
+import { Constellations } from './Constellations';
 
 const features = [
   {
@@ -64,9 +65,10 @@ export const Features = () => {
   };
 
   return (
-    <section id="features" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="features" className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto">
+      <Constellations />
       <div className="flex flex-col items-center text-center mb-16">
-        <h2 className="font-sans text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <h2 className="font-sans text-3xl md:text-5xl font-bold tracking-tight mb-6">
           Powerful <span className="italic text-emerald">Capabilities</span>
         </h2>
         <p className="text-sm text-text-2 max-w-md">
@@ -85,7 +87,7 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative bg-s1 border border-border rounded-2xl overflow-hidden ${colors.border} transition-all`}
+              className={`group relative bg-s1 border border-border rounded-2xl overflow-hidden ${colors.border} hover:shadow-lg hover:-translate-y-1 transition-all duration-300`}
             >
               <div 
                 className="p-10 min-h-[280px] flex flex-col relative"

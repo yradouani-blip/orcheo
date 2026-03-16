@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Send, CheckCircle2, Phone, Mail, AlertCircle } from 'lucide-react';
+import { Constellations } from './Constellations';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 
 export const ContactForm = () => {
@@ -20,7 +21,13 @@ export const ContactForm = () => {
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
-    if (!validateEmail(email)) {
+    if (!name.trim()) {
+      newErrors.name = 'Full name is required.';
+    }
+
+    if (!email.trim()) {
+      newErrors.email = 'Email address is required.';
+    } else if (!validateEmail(email)) {
       newErrors.email = 'Please enter a valid email address.';
     }
 
@@ -28,6 +35,10 @@ export const ContactForm = () => {
       newErrors.phone = 'Please enter a valid phone number.';
     } else if (!phone) {
       newErrors.phone = 'Phone number is required.';
+    }
+
+    if (!message.trim()) {
+      newErrors.message = 'Message is required.';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -40,7 +51,8 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-border">
+    <section id="contact" className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-border">
+      <Constellations />
       <div className="flex flex-col items-center text-center mb-16">
         <h2 className="font-sans text-4xl md:text-5xl font-bold tracking-tight mb-6">
           Let's build your <span className="italic text-emerald">next experience.</span>
@@ -92,8 +104,14 @@ export const ContactForm = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="John Doe"
-                      className="w-full bg-s2 border border-border rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-emerald/50 transition-colors"
+                      className={`w-full bg-s2 border ${errors.name ? 'border-red-500/50' : 'border-border'} rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-emerald/50 transition-colors`}
                     />
+                    {errors.name && (
+                      <div className="flex items-center gap-1.5 text-red-400 text-[10px] font-medium mt-1 ml-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.name}
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold tracking-[0.3em] text-muted uppercase ml-1">Email Address</label>
@@ -152,8 +170,14 @@ export const ContactForm = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tell us about your event..."
-                    className="w-full bg-s2 border border-border rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-emerald/50 transition-colors resize-none"
+                    className={`w-full bg-s2 border ${errors.message ? 'border-red-500/50' : 'border-border'} rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-emerald/50 transition-colors resize-none`}
                   />
+                  {errors.message && (
+                    <div className="flex items-center gap-1.5 text-red-400 text-[10px] font-medium mt-1 ml-1">
+                      <AlertCircle className="w-3 h-3" />
+                      {errors.message}
+                    </div>
+                  )}
                 </div>
                 
                 <button 

@@ -17,7 +17,7 @@
 }
 
 :root.light {
-  --bg: #F8FAFC;
+  --bg: #f4f5f8;
   --s1: #FFFFFF;
   --s2: #F1F5F9;
   --s3: #E2E8F0;
@@ -62,6 +62,11 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+    scroll-padding-top: 80px;
+  }
+
   body {
     @apply bg-bg text-text antialiased selection:bg-emerald/30 selection:text-emerald-light;
   }
@@ -125,7 +130,33 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Smooth theme transition */
-* {
-  @apply transition-colors duration-300;
+/* Theme switch: kill ALL transitions during toggle so every element flips at once */
+.switching-theme,
+.switching-theme *,
+.switching-theme *::before,
+.switching-theme *::after {
+  transition-duration: 0s !important;
 }
+
+/* Placeholder colors for form inputs - improved contrast in dark mode */
+input::placeholder, 
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.PhoneInputInput::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+/* Light mode placeholder adjustment */
+.light input::placeholder, 
+.light textarea::placeholder {
+  color: var(--text-2);
+}
+
+.light .PhoneInputInput::placeholder {
+  color: var(--text-2);
+}
+
